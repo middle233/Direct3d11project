@@ -50,7 +50,41 @@ Graphics::Graphics(HWND hwnd)
 		nullptr,
 		&pTarget
 	);
+#pragma region Zbuffer
+//创建Zbuffer，控制渲染顺序
+	D3D11_DEPTH_STENCIL_DESC depthDesc = {};
+	depthDesc.DepthEnable = true;
+	depthDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	depthDesc.DepthFunc = D3D11_COMPARISON_LESS;
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> pDepthStencilState;
+	pDevice->CreateDepthStencilState(&depthDesc, pDepthStencilState.GetAddressOf());
+
+	pcontext->OMSetDepthStencilState(pDepthStencilState.Get(), 1u);
+#pragma endregion
+
+#pragma region ZDepthTextrue
+	//创建深度图
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> pDepthMaskTexture;
+	D3D11_TEXTURE2D_DESC DepthTextureDesc = {};
+	DepthTextureDesc.Width = vpWidth;
+	DepthTextureDesc.Height = vpHeight;
+	DepthTextureDesc.MipLevels = 1u;
+	DepthTextureDesc.ArraySize = 1u;
+	DepthTextureDesc.Format = DXGI_FORMAT_D32_FLOAT;//专用于深度的D32
+	DepthTextureDesc.SampleDesc.Count = 1u;//
+	DepthTextureDesc.SampleDesc.Quality = 0u;//抗锯齿
+	DepthTextureDesc.Usage = D3D11_USAGE_DEFAULT;
+	DepthTextureDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	pDevice->CreateTexture2D(&DepthTextureDesc, nullptr, &pDepthMaskTexture);
 	
+	CD3D11_DEPTH_STENCIL_VIEW_DESC depthSVDesc = {};
+	depthSVDesc.Format = DXGI_FORMAT_D32_FLOAT;
+	depthSVDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	depthSVDesc.Texture2D.MipSlice = 0u;
+	pDevice->CreateDepthStencilView(pDepthMaskTexture.Get(), &depthSVDesc, &pDepthStencilView);
+	pcontext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), pDepthStencilView.Get());
+#pragma endregion
+
 }
 
 void Graphics::EndFrame()
@@ -61,13 +95,15 @@ void Graphics::ClearBuffer(float red, float green, float blue) noexcept
 {
 	const float color[] = { red,green,blue };
 	pcontext->ClearRenderTargetView(pTarget.Get(), color);
+	pcontext->ClearDepthStencilView(pDepthStencilView.Get(), D3D11_CLEAR_DEPTH, 1.0f, 0u);
 }
 
 void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 {
-	
 	namespace wrl = Microsoft::WRL;
 	namespace dx = DirectX;
+	
+#pragma region  CreateVertexBuffer
 	struct Vertex
 	{
 		struct
@@ -90,9 +126,6 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 		{-0.5f, 0.5f,-0.5f},
 
 	};
-
-#pragma region  CreateVertexBuffer and bind
-
 	//定义一个buffer类型的指针
 	wrl::ComPtr<ID3D11Buffer> pVertexBuffer;
 	
@@ -111,9 +144,9 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 	sd.pSysMem = vertices;
 
 	//创建这个buffer，并pDevice指向buffer
-	MYWMD_EXCEPT( pDevice->CreateBuffer(&bd, &sd,pVertexBuffer.GetAddressOf()));
+	pDevice->CreateBuffer(&bd, &sd,pVertexBuffer.GetAddressOf());
 		
-#pragma endregion
+#pragma endregion  //正方形顶点
 
 #pragma region CreateIndexBuffer
 	const unsigned short indices[] =
@@ -148,7 +181,9 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 	pDevice->CreateBuffer(&ibd, &isd, pIndexBuffer.GetAddressOf());
 
 	pcontext->IASetIndexBuffer(pIndexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0u);
-#pragma endregion
+#pragma endregion  //第一个正方形索引渲染
+
+
 
 #pragma region CreateConstBuffer
 	struct ConstantBuffer
@@ -163,7 +198,7 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 				dx::XMMatrixRotationZ(mouseY/100)*
 				dx::XMMatrixRotationY(mouseX/100)*
 				//dx::XMMatrixTranslation(mouseX/vpWidth*2-1,-mouseY/vpHeight*2+1,4.0f)*
-				dx::XMMatrixTranslation(0.0f,0.0f ,4.0f)*
+				dx::XMMatrixTranslation(0.0f,0.0f ,mouseY/100+4.0f)*
 				dx::XMMatrixPerspectiveLH(1.0f,3.0f/4.0f,0.5f,10.0f)
 			)
 		}
@@ -185,7 +220,7 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 	pDevice->CreateBuffer(&cbd, &csd, constBuffer.GetAddressOf());
 
 	pcontext->VSSetConstantBuffers(0u, 1u, constBuffer.GetAddressOf());
-#pragma endregion
+#pragma endregion  //转换矩阵运算
 
 #pragma region CreateConstbuffer2
 	wrl::ComPtr<ID3D11Buffer> constbuffer2;
@@ -233,7 +268,7 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 
 	pDevice->CreateBuffer(&cbd2, &csd2, constbuffer2.GetAddressOf());
 	pcontext->PSSetConstantBuffers(0u, 1u, constbuffer2.GetAddressOf());
-#pragma endregion
+#pragma endregion  //正方形面颜色数据
 
 	//建立顶点缓冲区到渲染管线
 	const UINT stride = sizeof(Vertex);
@@ -250,9 +285,9 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 #pragma region Create a pixelshader
 	//创建一个像素着色器
 	wrl::ComPtr<ID3D11PixelShader> pPixelShader;
-	MYWMD_EXCEPT(D3DReadFileToBlob(L"PixelShader.cso", &pBlob));
+	D3DReadFileToBlob(L"PixelShader.cso", &pBlob);
 
-	MYWMD_EXCEPT(pDevice->CreatePixelShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pPixelShader));
+	pDevice->CreatePixelShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pPixelShader);
 
 	//绑定像素着色器到渲染管线
 	pcontext->PSSetShader(pPixelShader.Get(), nullptr, 0u);
@@ -261,9 +296,9 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 #pragma region Create a Vertexshader
 	//创建一个顶点着色器
 	wrl::ComPtr<ID3D11VertexShader> pVertexShader;
-	MYWMD_EXCEPT(D3DReadFileToBlob(L"VertexShader.cso", &pBlob));
+	D3DReadFileToBlob(L"VertexShader.cso", &pBlob);
 
-	MYWMD_EXCEPT(pDevice->CreateVertexShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pVertexShader));
+	pDevice->CreateVertexShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pVertexShader);
 
 	//顶点着色器绑定到渲染管线
 	pcontext->VSSetShader(pVertexShader.Get(), nullptr, 0u);
@@ -277,19 +312,18 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 	const D3D11_INPUT_ELEMENT_DESC ied[] = {
 		{"POSITION",0,DXGI_FORMAT_R32G32B32_FLOAT,0,0,D3D11_INPUT_PER_VERTEX_DATA,0}
 	};
-	MYWMD_EXCEPT(pDevice->CreateInputLayout(
+	pDevice->CreateInputLayout(
 		ied,
 		(UINT)std::size(ied),
 		pBlob->GetBufferPointer(),
 		pBlob->GetBufferSize(),
 		&pInputLayout
-	));
+	);
 
 	//绑定一个vertex layout
 	pcontext->IASetInputLayout(pInputLayout.Get());
 #pragma endregion
-	//绑定一个render target,渲染目标？
-	pcontext->OMSetRenderTargets(1u, pTarget.GetAddressOf(), nullptr);
+
 
 	//设置视口 viewport
 	D3D11_VIEWPORT vp;

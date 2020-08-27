@@ -21,7 +21,7 @@ void App::DoFrame()
 
 	//Çå³ýbuffer
 	wnd.Gfx().ClearBuffer(0.0f, c, c);
-
+	wnd.Gfx().DrawTestTriangle(t, t, 0);
 	//Render a triangle
 	wnd.Gfx().DrawTestTriangle(t,wnd.mouse.GetPosX(),wnd.mouse.GetPosY());
 
