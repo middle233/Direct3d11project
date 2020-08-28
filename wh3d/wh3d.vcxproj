@@ -149,25 +149,36 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="BindBase.cpp" />
     <ClCompile Include="DrawTestTriangle.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MyException.cpp" />
     <ClCompile Include="MyTimer.cpp" />
+    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="VerterBuffer.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="winmian.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="BindBase.h" />
+    <ClInclude Include="ConstBuffer.h" />
     <ClInclude Include="DrawTestTriangle.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="IndexBuffer.h" />
+    <ClInclude Include="InputLayout.h" />
     <ClInclude Include="KeyBoard.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="MyException.h" />
     <ClInclude Include="MyTimer.h" />
     <ClInclude Include="MyWin.h" />
+    <ClInclude Include="PixelShader.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Transform.h" />
+    <ClInclude Include="VerterBuffer.h" />
+    <ClInclude Include="VertexShader.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

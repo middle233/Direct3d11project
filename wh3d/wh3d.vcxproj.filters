@@ -16,6 +16,18 @@
     <Filter Include="shader">
       <UniqueIdentifier>{a3d066c7-8417-4711-830e-7561b389e5a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Draw">
+      <UniqueIdentifier>{d89179bb-da65-47bd-82e4-1bb4ff63eb06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Bind">
+      <UniqueIdentifier>{a3e8c07e-70b3-4a40-8f4a-200e2776196e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Bind">
+      <UniqueIdentifier>{3a78cdd4-d52c-4eec-ad18-d85607ee3d6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Draw">
+      <UniqueIdentifier>{934d31fc-aee8-42d8-996f-59e41b94437f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="winmian.cpp">
@@ -43,6 +55,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="DrawTestTriangle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BindBase.cpp">
+      <Filter>源文件\Bind</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VerterBuffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,6 +96,30 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="DrawTestTriangle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstBuffer.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="BindBase.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="InputLayout.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexShader.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="IndexBuffer.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelShader.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="VerterBuffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
