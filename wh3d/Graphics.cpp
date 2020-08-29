@@ -104,6 +104,7 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 	namespace dx = DirectX;
 	
 #pragma region  CreateVertexBuffer
+	//建立顶点缓冲区到渲染管线
 	struct Vertex
 	{
 		struct
@@ -145,7 +146,11 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 
 	//创建这个buffer，并pDevice指向buffer
 	pDevice->CreateBuffer(&bd, &sd,pVertexBuffer.GetAddressOf());
-		
+
+	const UINT stride = sizeof(Vertex);
+	const UINT offset = 0u;
+	//插槽为0，buffer数量为1，
+	pcontext->IASetVertexBuffers(0u, 1u, pVertexBuffer.GetAddressOf(), &stride, &offset);
 #pragma endregion  //正方形顶点
 
 #pragma region CreateIndexBuffer
@@ -205,7 +210,7 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 	};
 	wrl::ComPtr<ID3D11Buffer> constBuffer;
 	D3D11_BUFFER_DESC cbd = {};
-	ZeroMemory(&ibd, sizeof(cbd));
+	ZeroMemory(&cbd, sizeof(cbd));
 	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	cbd.Usage = D3D11_USAGE_DYNAMIC;
 	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
@@ -270,16 +275,6 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 	pcontext->PSSetConstantBuffers(0u, 1u, constbuffer2.GetAddressOf());
 #pragma endregion  //正方形面颜色数据
 
-	//建立顶点缓冲区到渲染管线
-	const UINT stride = sizeof(Vertex);
-	const UINT offset = 0u;
-	
-	//插槽为0，buffer数量为1，
-	pcontext-> IASetVertexBuffers(0u, 1u, pVertexBuffer.GetAddressOf(), &stride, &offset);
-	
-	//设置三角形的边的渲染模式
-	pcontext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
 	wrl::ComPtr<ID3DBlob> pBlob;
 
 #pragma region Create a pixelshader
@@ -334,6 +329,9 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 	vp.TopLeftX = 0;
 	vp.TopLeftY = 0;
 	pcontext->RSSetViewports(1u, &vp);
+
+	//设置三角形的边的渲染模式
+	pcontext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	
 	//绘制顶点数，从第一个0开始画
 	pcontext->DrawIndexed((UINT)std::size(indices),0u,0u);

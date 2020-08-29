@@ -66,6 +66,24 @@
     <ClCompile Include="VerterBuffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ConstBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="IndexBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelBuffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelShader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexShader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="InputLayout.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyWin.h">
@@ -120,6 +138,9 @@
       <Filter>头文件\Bind</Filter>
     </ClInclude>
     <ClInclude Include="VerterBuffer.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="PixelBuffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

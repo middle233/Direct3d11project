@@ -150,14 +150,20 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="BindBase.cpp" />
+    <ClCompile Include="ConstBuffer.cpp" />
     <ClCompile Include="DrawTestTriangle.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="IndexBuffer.cpp" />
+    <ClCompile Include="InputLayout.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MyException.cpp" />
     <ClCompile Include="MyTimer.cpp" />
+    <ClCompile Include="PixelBuffer.cpp" />
+    <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="VerterBuffer.cpp" />
+    <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="winmian.cpp" />
   </ItemGroup>
@@ -174,6 +180,7 @@
     <ClInclude Include="MyException.h" />
     <ClInclude Include="MyTimer.h" />
     <ClInclude Include="MyWin.h" />
+    <ClInclude Include="PixelBuffer.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Transform.h" />
