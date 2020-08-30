@@ -1,6 +1,6 @@
 #pragma once
-#include "BindBase.h"
-class Transform :BindBase
+#include "ConstBuffer.h"
+class Transform :ConstBuffer
 {
 public:
 	struct ConstantBuffer
@@ -8,11 +8,8 @@ public:
 		DirectX::XMMATRIX transform;
 	};
 	ConstantBuffer cb;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> constBuffer;
-	D3D11_BUFFER_DESC cbd ;
-	D3D11_SUBRESOURCE_DATA csd ;
 public:
-	void CreateBuffer(Graphics& gfx, int mouseY, int mouseX);
-	void updata(Graphics& gfx);
+	Transform(Graphics& gfx, int mouseY, int mouseX);
+	void Bind(Graphics& gfx) override;
 };
 

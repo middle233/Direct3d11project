@@ -188,8 +188,6 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 	pcontext->IASetIndexBuffer(pIndexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0u);
 #pragma endregion  //第一个正方形索引渲染
 
-
-
 #pragma region CreateConstBuffer
 	struct ConstantBuffer
 	{
@@ -318,7 +316,6 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 	//绑定一个vertex layout
 	pcontext->IASetInputLayout(pInputLayout.Get());
 #pragma endregion
-
 
 	//设置视口 viewport
 	D3D11_VIEWPORT vp;

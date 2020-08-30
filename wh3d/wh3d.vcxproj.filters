@@ -60,29 +60,29 @@
     <ClCompile Include="BindBase.cpp">
       <Filter>源文件\Bind</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="VerterBuffer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="ConstBuffer.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Bind</Filter>
     </ClCompile>
     <ClCompile Include="IndexBuffer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="PixelBuffer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="PixelShader.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="VertexShader.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Bind</Filter>
     </ClCompile>
     <ClCompile Include="InputLayout.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Bind</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelBuffer.cpp">
+      <Filter>源文件\Bind</Filter>
+    </ClCompile>
+    <ClCompile Include="VerterBuffer.cpp">
+      <Filter>源文件\Bind</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>源文件\Bind</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexShader.cpp">
+      <Filter>源文件\Bind</Filter>
+    </ClCompile>
+    <ClCompile Include="PixelShader.cpp">
+      <Filter>源文件\Bind</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +141,7 @@
       <Filter>头文件\Bind</Filter>
     </ClInclude>
     <ClInclude Include="PixelBuffer.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\Bind</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

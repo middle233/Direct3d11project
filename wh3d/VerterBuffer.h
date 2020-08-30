@@ -19,7 +19,7 @@ public:
 	D3D11_BUFFER_DESC bd ;
 	D3D11_SUBRESOURCE_DATA sd ;
 public:
-	void CreateBuffer(Graphics& gfx);
-	void UpData(Graphics& gfx);
+	VerterBuffer(Graphics& gfx);
+	void Bind(Graphics& gfx) override;
 };
 

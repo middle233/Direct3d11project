@@ -1,23 +1,39 @@
 #include "IndexBuffer.h"
 
-void IndexBuffer::CreateBuffer(Graphics& gfx)
+IndexBuffer::IndexBuffer(Graphics& gfx)
+	:
+
+	indices{
+		0,2,1,
+		0,3,2,
+		0,7,3,
+		0,4,7,
+		0,1,5,
+		0,5,4,
+		6,5,1,
+		6,1,2,
+		6,2,3,
+		6,3,7,
+		6,7,4,
+		6,4,5
+}
 {
-	ZeroMemory(&ibd, sizeof(ibd));
-	ibd.BindFlags = D3D11_BIND_INDEX_BUFFER;
-	ibd.Usage = D3D11_USAGE_DEFAULT;
-	ibd.CPUAccessFlags = 0u;
-	ibd.MiscFlags = 0u;
-	ibd.ByteWidth = sizeof(indices);
-	ibd.StructureByteStride = 0u;
+	ZeroMemory(&cbd, sizeof(cbd));
+	cbd.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	cbd.Usage = D3D11_USAGE_DEFAULT;
+	cbd.CPUAccessFlags = 0u;
+	cbd.MiscFlags = 0u;
+	cbd.ByteWidth = sizeof(indices);
+	cbd.StructureByteStride = 0u;
 
-	ZeroMemory(&isd, sizeof(isd));
-	isd.pSysMem = indices;
+	ZeroMemory(&csd, sizeof(csd));
+	csd.pSysMem = indices;
 
-	GetDevice(gfx)->CreateBuffer(&ibd, &isd, pIndexBuffer.GetAddressOf());
+	GetDevice(gfx)->CreateBuffer(&cbd, &csd, constBuffer.GetAddressOf());
 
 }
 
-void IndexBuffer::Updata(Graphics& gfx)
+void IndexBuffer::Bind(Graphics& gfx)
 {
-	GetContext(gfx)->IASetIndexBuffer(pIndexBuffer.Get(), DXGI_FORMAT_R16_UINT, 0u);
+	GetContext(gfx)->IASetIndexBuffer(constBuffer.Get(), DXGI_FORMAT_R16_UINT, 0u);
 }

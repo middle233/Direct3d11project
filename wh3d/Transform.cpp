@@ -1,9 +1,7 @@
 #include "Transform.h"
 
-void Transform::CreateBuffer(Graphics& gfx,int mouseY,int mouseX)
-{
-	ConstantBuffer cb =
-	{
+Transform::Transform(Graphics& gfx,int mouseY,int mouseX):
+	cb{
 		{
 			DirectX::XMMatrixTranspose
 			(
@@ -14,8 +12,9 @@ void Transform::CreateBuffer(Graphics& gfx,int mouseY,int mouseX)
 				DirectX::XMMatrixPerspectiveLH(1.0f,3.0f / 4.0f,0.5f,10.0f)
 			)
 		}
-	};
-	cbd = {};
+	}
+{
+	cbd={},
 	ZeroMemory(&cbd, sizeof(cbd));
 	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	cbd.Usage = D3D11_USAGE_DYNAMIC;
@@ -24,14 +23,14 @@ void Transform::CreateBuffer(Graphics& gfx,int mouseY,int mouseX)
 	cbd.ByteWidth = sizeof(cb);
 	cbd.StructureByteStride = 0u;
 
-	csd = {};
+	csd={},
 	ZeroMemory(&csd, sizeof(csd));
 	csd.pSysMem = &cb;
 
 	GetDevice(gfx)->CreateBuffer(&cbd, &csd, constBuffer.GetAddressOf());
 }
 
-void Transform::updata(Graphics& gfx)
+void Transform::Bind(Graphics& gfx)
 {
 	GetContext(gfx)->VSSetConstantBuffers(0u, 1u, constBuffer.GetAddressOf());
 }

@@ -8,6 +8,6 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> pVertexShader;
 	Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
 public:
-	void CreateVertexShader(Graphics& gfx);
-	void UpData(Graphics& gfx);
+	VertexShader(Graphics& gfx);
+	void Bind(Graphics& gfx) override;
 };

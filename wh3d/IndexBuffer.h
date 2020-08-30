@@ -1,13 +1,10 @@
 #pragma once
-#include "BindBase.h"
-class IndexBuffer : BindBase
+#include "ConstBuffer.h"
+class IndexBuffer : ConstBuffer
 {
 public:
-	const unsigned short indices[12];
-	Microsoft::WRL::ComPtr<ID3D11Buffer> pIndexBuffer;
-	D3D11_BUFFER_DESC ibd ;
-	D3D11_SUBRESOURCE_DATA isd ;
+	const unsigned short indices[36];
 public:
-	void CreateBuffer(Graphics& gfx);
-	void Updata(Graphics& gfx);
+	IndexBuffer(Graphics& gfx);
+	void Bind(Graphics& gfx) override;
 };

@@ -8,6 +8,6 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> pPixelShader;
 	Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
 public:
-	void CreatePixelShader(Graphics& gfx);
-	void UpData(Graphics& gfx);
+	PixelShader(Graphics& gfx);
+	void Bind(Graphics& gfx) override;
 };

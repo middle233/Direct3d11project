@@ -1,10 +1,9 @@
 #pragma once
-#include"BindBase.h"
-class PixelBuffer :BindBase
+#include"ConstBuffer.h"
+class PixelBuffer :ConstBuffer
 {
 public:
-	Microsoft::WRL::ComPtr<ID3D11Buffer> constbuffer2;
-	struct ConstantBuffer2
+	struct ConstantBuffer
 	{
 		struct
 		{
@@ -15,11 +14,9 @@ public:
 		}face_color[12];
 
 	};
-	const ConstantBuffer2 cb2;
-	D3D11_BUFFER_DESC cbd2;
-	D3D11_SUBRESOURCE_DATA csd2;
+	const ConstantBuffer cb;
 public:
-	void CreateBuffer(Graphics& gfx);
-	void UpData(Graphics& gfx);
+	PixelBuffer(Graphics& gfx);
+	void Bind(Graphics& gfx) override;
 };
 
