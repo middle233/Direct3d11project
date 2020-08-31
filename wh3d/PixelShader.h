@@ -8,6 +8,6 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> pPixelShader;
 	Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
 public:
-	PixelShader(Graphics& gfx);
+	PixelShader(Graphics& gfx,const std::wstring& path);
 	void Bind(Graphics& gfx) override;
 };

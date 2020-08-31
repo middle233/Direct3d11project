@@ -1,10 +1,12 @@
 #pragma once
-#include "ConstBuffer.h"
-class IndexBuffer : ConstBuffer
+#include "BindBase.h"
+class IndexBuffer : BindBase
 {
 public:
-	const unsigned short indices[36];
+	UINT count;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> pIndexBuffer;
 public:
-	IndexBuffer(Graphics& gfx);
+	IndexBuffer(Graphics& gfx, const std::vector<unsigned short>& indices);
 	void Bind(Graphics& gfx) override;
+	UINT GetCount() const;
 };

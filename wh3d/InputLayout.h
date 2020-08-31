@@ -4,10 +4,8 @@
 class InputLayout :BindBase
 {
 public:
-	Microsoft::WRL::ComPtr<ID3DBlob> pBlob;
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> pInputLayout;
-	const D3D11_INPUT_ELEMENT_DESC ied[];
 public:
 	void Bind(Graphics& gfx) override;
-	InputLayout(Graphics& gfx);
+	InputLayout(Graphics& gfx,const std::vector<D3D11_INPUT_ELEMENT_DESC>& layout, ID3DBlob* pBlob);
 };

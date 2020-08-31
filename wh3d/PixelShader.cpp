@@ -1,8 +1,8 @@
 #include "PixelShader.h"
 
- PixelShader::PixelShader(Graphics& gfx)
+ PixelShader::PixelShader(Graphics& gfx,const std::wstring& path)
 {
-	D3DReadFileToBlob(L"PixelShader.cso", &pBlob);
+	D3DReadFileToBlob(path.c_str(), &pBlob);
 	GetDevice(gfx)->CreatePixelShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pPixelShader);
 }
 

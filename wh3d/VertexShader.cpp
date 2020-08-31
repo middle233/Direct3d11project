@@ -1,8 +1,8 @@
 #include "VertexShader.h"
 
-VertexShader::VertexShader(Graphics& gfx)
+VertexShader::VertexShader(Graphics& gfx, const std::wstring& path)
 {
-	D3DReadFileToBlob(L"VertexShader.cso", &pBlob);
+	D3DReadFileToBlob(path.c_str(), &pBlob);
 	GetDevice(gfx)->CreateVertexShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &pVertexShader);
 }
 

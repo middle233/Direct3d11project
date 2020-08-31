@@ -1,5 +1,5 @@
 #include "PixelBuffer.h"
-
+  
 PixelBuffer::PixelBuffer(Graphics& gfx)
 {
 	const ConstantBuffer cb =

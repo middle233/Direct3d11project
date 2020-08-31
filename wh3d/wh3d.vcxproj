@@ -150,7 +150,9 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="BindBase.cpp" />
+    <ClCompile Include="Box.cpp" />
     <ClCompile Include="ConstBuffer.cpp" />
+    <ClCompile Include="DrawBase.cpp" />
     <ClCompile Include="DrawTestTriangle.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
@@ -161,7 +163,9 @@
     <ClCompile Include="MyTimer.cpp" />
     <ClCompile Include="PixelBuffer.cpp" />
     <ClCompile Include="PixelShader.cpp" />
+    <ClCompile Include="Topology.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="TransformCbuf.cpp" />
     <ClCompile Include="VerterBuffer.cpp" />
     <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -170,7 +174,9 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="BindBase.h" />
+    <ClInclude Include="Box.h" />
     <ClInclude Include="ConstBuffer.h" />
+    <ClInclude Include="DrawBase.h" />
     <ClInclude Include="DrawTestTriangle.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="IndexBuffer.h" />
@@ -183,7 +189,9 @@
     <ClInclude Include="PixelBuffer.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Topology.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="TransformCbuf.h" />
     <ClInclude Include="VerterBuffer.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="Window.h" />

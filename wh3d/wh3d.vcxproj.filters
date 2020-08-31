@@ -84,6 +84,18 @@
     <ClCompile Include="PixelShader.cpp">
       <Filter>源文件\Bind</Filter>
     </ClCompile>
+    <ClCompile Include="Topology.cpp">
+      <Filter>源文件\Bind</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawBase.cpp">
+      <Filter>源文件\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>源文件\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformCbuf.cpp">
+      <Filter>源文件\Bind</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyWin.h">
@@ -141,6 +153,18 @@
       <Filter>头文件\Bind</Filter>
     </ClInclude>
     <ClInclude Include="PixelBuffer.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="Topology.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawBase.h">
+      <Filter>头文件\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>头文件\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformCbuf.h">
       <Filter>头文件\Bind</Filter>
     </ClInclude>
   </ItemGroup>

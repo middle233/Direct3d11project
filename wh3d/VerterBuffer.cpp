@@ -1,19 +1,10 @@
 #include "VerterBuffer.h"
-
-VerterBuffer::VerterBuffer(Graphics& gfx):
-	vertices{
-		{ 0.5f, 0.5f, 0.5f},
-		{ 0.5f,-0.5f, 0.5f},
-		{-0.5f,-0.5f, 0.5f},
-		{-0.5f, 0.5f, 0.5f},
-		{ 0.5f, 0.5f,-0.5f},
-		{ 0.5f,-0.5f,-0.5f},
-		{-0.5f,-0.5f,-0.5f},
-		{-0.5f, 0.5f,-0.5f},
-	},
-	bd {},
+template<class V>
+VerterBuffer::VerterBuffer(Graphics& gfx, const std::vector<V>& vertices)
+	:
+	bd{},
 	sd{},
-	stride(sizeof(Vertex)),
+	stride(sizeof(V)),
 	offset(0u)
 {
 
@@ -21,11 +12,11 @@ VerterBuffer::VerterBuffer(Graphics& gfx):
 	bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bd.Usage = D3D11_USAGE_DEFAULT;
 	bd.CPUAccessFlags = 0u;
-	bd.ByteWidth = sizeof(vertices);
-	bd.StructureByteStride = sizeof(Vertex);
+	bd.ByteWidth = UINT (sizeof(v))*vertices.size());
+	bd.StructureByteStride = sizeof(V);
 
 	ZeroMemory(&sd, sizeof(sd));
-	sd.pSysMem = vertices;
+	sd.pSysMem = vertices.data();
 
 	GetDevice(gfx)->CreateBuffer(&bd, &sd, pVertexBuffer.GetAddressOf());
 }

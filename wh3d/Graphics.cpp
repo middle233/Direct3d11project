@@ -333,3 +333,18 @@ void Graphics::DrawTestTriangle(float angle, float mouseX, float mouseY)
 	//绘制顶点数，从第一个0开始画
 	pcontext->DrawIndexed((UINT)std::size(indices),0u,0u);
 }
+
+void Graphics::DrawIndexed(UINT uint)
+{
+	pcontext->DrawIndexed(uint, 0u, 0u);
+}
+
+void Graphics::SetProjection(DirectX::FXMMATRIX project) noexcept
+{
+	projection = project;
+}
+
+DirectX::XMMATRIX Graphics::Getprojection() const noexcept
+{
+	return projection;
+}

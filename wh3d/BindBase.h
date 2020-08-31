@@ -1,6 +1,7 @@
 #pragma once
 #include"Graphics.h"
 #include<DirectXMath.h>
+
 #pragma comment(lib,"d3d11.lib")
 class BindBase
 {
