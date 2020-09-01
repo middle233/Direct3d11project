@@ -2,7 +2,7 @@
 #include"BindBase.h"
 #include<d3dcompiler.h>
 #pragma comment(lib,"D3DCompiler.lib")
-class VertexShader :BindBase
+class VertexShader :public BindBase
 {
 public:
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> pVertexShader;
@@ -10,4 +10,5 @@ public:
 public:
 	VertexShader(Graphics& gfx, const std::wstring& path);
 	void Bind(Graphics& gfx) override;
+	ID3DBlob* GetBytecode();
 };

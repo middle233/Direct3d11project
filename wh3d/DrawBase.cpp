@@ -1,7 +1,5 @@
 #include "DrawBase.h"
 #include"IndexBuffer.h"
-#include<cassert>
-#include<typeinfo>
 void DrawBase::Draw(Graphics& gfx) const
 {
 	for (auto& b : binds)

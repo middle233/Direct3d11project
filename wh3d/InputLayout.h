@@ -1,7 +1,7 @@
 #pragma once
 #include<cstddef>
 #include"BindBase.h"
-class InputLayout :BindBase
+class InputLayout :public BindBase
 {
 public:
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> pInputLayout;

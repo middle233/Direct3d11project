@@ -10,3 +10,8 @@ void VertexShader::Bind(Graphics& gfx)
 {
 	GetContext(gfx)->VSSetShader(pVertexShader.Get(), nullptr, 0u);
 }
+
+ID3DBlob* VertexShader::GetBytecode()
+{
+	return pBlob.Get();
+}

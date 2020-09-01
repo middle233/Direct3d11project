@@ -1,6 +1,6 @@
 #pragma once
 #include "BindBase.h"
-class IndexBuffer : BindBase
+class IndexBuffer : public BindBase
 {
 public:
 	UINT count;

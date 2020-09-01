@@ -1,5 +1,5 @@
 #include "Box.h"
-#include"VerterBuffer.h"
+#include"BindAll.h"
 
 Box::Box(Graphics& gfx, 
 	std::mt19937& rng, 
@@ -39,7 +39,7 @@ Box::Box(Graphics& gfx,
 		{-1.0f,1.0f,1.0f},
 		{1.0f,1.0f,1.0f}
 	};
-	AddBind(std::make_unique<VerterBuffer>(gfx, vertices));
+	AddBind(std::make_unique<VertexBuffer>(gfx, vertices));
 
 	auto pvs = std::make_unique<VertexShader>(gfx, L"VertexShader.cso");
 	auto pvsbc = pvs->GetBytecode();
@@ -82,6 +82,7 @@ Box::Box(Graphics& gfx,
 	{
 		{"POSITION",0,DXGI_FORMAT_R32G32B32_FLOAT,0,0,D3D11_INPUT_PER_VERTEX_DATA}
 	};
+
 	AddBind(std::make_unique<InputLayout>(gfx, ied, pvsbc));
 
 	AddBind(std::make_unique<Topology>(gfx, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST));
@@ -99,7 +100,7 @@ void Box::Updata(float dt)
 	chi += dchi * dt;
 }
 
-DirectX::XMMATRIX Box::GetTransformXM()
+DirectX::XMMATRIX Box::GetTransformXM() const
 {
 	return DirectX::XMMatrixRotationRollPitchYaw(pitch,yaw,roll)*
 		DirectX::XMMatrixTranslation(r,0.0f,0.0f)*

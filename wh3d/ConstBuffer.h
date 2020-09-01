@@ -2,7 +2,7 @@
 #include"BindBase.h"
 
 template<typename C>
-class ConstBuffer :protected BindBase
+class ConstBuffer :public BindBase
 {
 public:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> pConstBuffer;
@@ -15,7 +15,7 @@ public:
 			pConstBuffer.Get(), 0u,
 			D3D11_MAP_WRITE_DISCARD,
 			0u, &msr);
-		memccpy(msr.pData, &consts, sizeof(consts));
+		memcpy(msr.pData, &consts, sizeof(consts));
 		GetContext(gfx)->Unmap(pConstBuffer.Get(), 0u);
 	}
 	//有顶点的构造函数
@@ -58,7 +58,7 @@ public:
 	using ConstBuffer<C>::ConstBuffer;
 	void Bind(Graphics& gfx) override
 	{
-		GetContext(gfx)->VSSetConstantBuffers(0u,1u, pConstBuffer.GetAddressOf())
+		GetContext(gfx)->VSSetConstantBuffers(0u, 1u, pConstBuffer.GetAddressOf());
 	}
 };
 
@@ -72,6 +72,6 @@ public:
 	using ConstBuffer<C>::ConstBuffer;
 	void Bind(Graphics& gfx) override
 	{
-		GetContext(gfx)->PSSetConstantBuffers(0u, 1u, pConstBuffer.GetAddressOf())
+		GetContext(gfx)->PSSetConstantBuffers(0u, 1u, pConstBuffer.GetAddressOf());
 	}
 };

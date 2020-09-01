@@ -11,7 +11,7 @@ public:
 		std::uniform_real_distribution<float>& rdist
 	);
 	void Updata(float dt) override;
-	DirectX::XMMATRIX GetTransformXM() override;
+	DirectX::XMMATRIX GetTransformXM() const override;
 private:
 	//Î»ÖÃ
 	float r;//ÀëÔ²ĞÄµÄ¾àÀë

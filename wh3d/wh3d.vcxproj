@@ -161,10 +161,8 @@
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="MyException.cpp" />
     <ClCompile Include="MyTimer.cpp" />
-    <ClCompile Include="PixelBuffer.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="Topology.cpp" />
-    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TransformCbuf.cpp" />
     <ClCompile Include="VerterBuffer.cpp" />
     <ClCompile Include="VertexShader.cpp" />
@@ -173,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="BindAll.h" />
     <ClInclude Include="BindBase.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="ConstBuffer.h" />
@@ -186,11 +185,9 @@
     <ClInclude Include="MyException.h" />
     <ClInclude Include="MyTimer.h" />
     <ClInclude Include="MyWin.h" />
-    <ClInclude Include="PixelBuffer.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Topology.h" />
-    <ClInclude Include="Transform.h" />
     <ClInclude Include="TransformCbuf.h" />
     <ClInclude Include="VerterBuffer.h" />
     <ClInclude Include="VertexShader.h" />

@@ -4,6 +4,11 @@
 #include<wrl.h>
 #include<sstream>
 #include<vector>
+#include<cmath>
+#include<random>
+#include<memory>
+#include<d3dcompiler.h>
+#include<DirectXMath.h>
 class Graphics
 {
 	friend class BindBase;
@@ -14,10 +19,10 @@ public:
 	~Graphics()=default;
 	void EndFrame();//Ìø×ªÕâÒ»Ö¡
 	void ClearBuffer(float red, float green, float blue) noexcept;
-	void DrawTestTriangle(float angle,float mouseX,float mouseY);
 	void DrawIndexed(UINT uint);
 	void SetProjection(DirectX::FXMMATRIX project) noexcept ;
 	DirectX::XMMATRIX Getprojection() const noexcept;
+	
 private:
 
 	DirectX::XMMATRIX projection;

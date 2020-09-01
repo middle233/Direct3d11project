@@ -69,15 +69,6 @@
     <ClCompile Include="InputLayout.cpp">
       <Filter>源文件\Bind</Filter>
     </ClCompile>
-    <ClCompile Include="PixelBuffer.cpp">
-      <Filter>源文件\Bind</Filter>
-    </ClCompile>
-    <ClCompile Include="VerterBuffer.cpp">
-      <Filter>源文件\Bind</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>源文件\Bind</Filter>
-    </ClCompile>
     <ClCompile Include="VertexShader.cpp">
       <Filter>源文件\Bind</Filter>
     </ClCompile>
@@ -94,6 +85,9 @@
       <Filter>源文件\Draw</Filter>
     </ClCompile>
     <ClCompile Include="TransformCbuf.cpp">
+      <Filter>源文件\Bind</Filter>
+    </ClCompile>
+    <ClCompile Include="VerterBuffer.cpp">
       <Filter>源文件\Bind</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,15 +140,6 @@
     <ClInclude Include="PixelShader.h">
       <Filter>头文件\Bind</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>头文件\Bind</Filter>
-    </ClInclude>
-    <ClInclude Include="VerterBuffer.h">
-      <Filter>头文件\Bind</Filter>
-    </ClInclude>
-    <ClInclude Include="PixelBuffer.h">
-      <Filter>头文件\Bind</Filter>
-    </ClInclude>
     <ClInclude Include="Topology.h">
       <Filter>头文件\Bind</Filter>
     </ClInclude>
@@ -165,6 +150,12 @@
       <Filter>头文件\Draw</Filter>
     </ClInclude>
     <ClInclude Include="TransformCbuf.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="BindAll.h">
+      <Filter>头文件\Bind</Filter>
+    </ClInclude>
+    <ClInclude Include="VerterBuffer.h">
       <Filter>头文件\Bind</Filter>
     </ClInclude>
   </ItemGroup>
