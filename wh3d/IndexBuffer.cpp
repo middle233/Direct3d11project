@@ -11,8 +11,8 @@ IndexBuffer::IndexBuffer(Graphics& gfx,const std::vector<unsigned short>& indice
 	cbd.Usage = D3D11_USAGE_DEFAULT;
 	cbd.CPUAccessFlags = 0u;
 	cbd.MiscFlags = 0u;
-	cbd.ByteWidth = sizeof(indices);
-	cbd.StructureByteStride = 0u;
+	cbd.ByteWidth = count*sizeof(indices);
+	cbd.StructureByteStride = sizeof(unsigned short);
 
 	D3D11_SUBRESOURCE_DATA csd;
 	ZeroMemory(&csd, sizeof(csd));

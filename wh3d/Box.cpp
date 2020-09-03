@@ -30,20 +30,21 @@ Box::Box(Graphics& gfx,
 	};
 	const std::vector<Vertex> vertices =
 	{
-		{-1.0f,-1.0f,-1.0f},
-		{1.0f,-1.0f,-1.0f},
-		{-1.0f,1.0f,-1.0f},
-		{1.0f,1.0f,-1.0f},
-		{-1.0f,-1.0f,1.0f},
-		{1.0f,-1.0f,1.0f},
-		{-1.0f,1.0f,1.0f},
-		{1.0f,1.0f,1.0f}
+		{ -1.0f,-1.0f,-1.0f },
+		{ 1.0f,-1.0f,-1.0f },
+		{ -1.0f,1.0f,-1.0f },
+		{ 1.0f,1.0f,-1.0f },
+		{ -1.0f,-1.0f,1.0f },
+		{ 1.0f,-1.0f,1.0f },
+		{ -1.0f,1.0f,1.0f },
+		{ 1.0f,1.0f,1.0f },
 	};
 	AddBind(std::make_unique<VertexBuffer>(gfx, vertices));
 
 	auto pvs = std::make_unique<VertexShader>(gfx, L"VertexShader.cso");
 	auto pvsbc = pvs->GetBytecode();
-	AddBind(std::make_unique<PixelShader>(gfx, L"pixelShader.cso"));
+	AddBind(std::move(pvs));
+	AddBind(std::make_unique<PixelShader>(gfx, L"PixelShader.cso"));
 	const std::vector<unsigned short> indices = {
 		0,2,1, 2,3,1,
 		1,3,5, 3,7,5,
@@ -63,24 +64,24 @@ Box::Box(Graphics& gfx,
 			float g;
 			float b;
 			float a;
-		}face_colors[6];
+		}face_colors[12];
 	};
 	const ConstantBuffer2 cb2 =
 	{
 		{
-			{1.0f,0.0f,1.0f},
-			{1.0f,0.0f,0.0f},
-			{0.0f,1.0f,0.0f},
-			{0.0f,0.0f,1.0f},
-			{1.0f,1.0f,0.0f},
-			{0.0f,1.0f,1.0f},
+			{ 1.0f,0.0f,1.0f },
+			{ 1.0f,0.0f,0.0f },
+			{ 0.0f,1.0f,0.0f },
+			{ 0.0f,0.0f,1.0f },
+			{ 1.0f,1.0f,0.0f },
+			{ 0.0f,1.0f,1.0f },
 		}
 	};
 	AddBind(std::make_unique<PixelConstantBuffer<ConstantBuffer2>>(gfx, cb2));
 
 	const std::vector<D3D11_INPUT_ELEMENT_DESC> ied =
 	{
-		{"POSITION",0,DXGI_FORMAT_R32G32B32_FLOAT,0,0,D3D11_INPUT_PER_VERTEX_DATA}
+		{"POSITION",0,DXGI_FORMAT_R32G32B32_FLOAT,0,0,D3D11_INPUT_PER_VERTEX_DATA,0}
 	};
 
 	AddBind(std::make_unique<InputLayout>(gfx, ied, pvsbc));
@@ -105,5 +106,5 @@ DirectX::XMMATRIX Box::GetTransformXM() const
 	return DirectX::XMMatrixRotationRollPitchYaw(pitch,yaw,roll)*
 		DirectX::XMMatrixTranslation(r,0.0f,0.0f)*
 		DirectX::XMMatrixRotationRollPitchYaw(theta,phi,chi)*
-		DirectX::XMMatrixTranslation(r, 0.0f, 20.0f);
+		DirectX::XMMatrixTranslation(0.0f, 0.0f, 20.0f);
 }

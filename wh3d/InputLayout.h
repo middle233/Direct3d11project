@@ -1,5 +1,4 @@
 #pragma once
-#include<cstddef>
 #include"BindBase.h"
 class InputLayout :public BindBase
 {

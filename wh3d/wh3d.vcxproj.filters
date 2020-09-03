@@ -155,7 +155,7 @@
     <ClInclude Include="BindAll.h">
       <Filter>头文件\Bind</Filter>
     </ClInclude>
-    <ClInclude Include="VerterBuffer.h">
+    <ClInclude Include="VertexBuffer.h">
       <Filter>头文件\Bind</Filter>
     </ClInclude>
   </ItemGroup>

@@ -26,6 +26,7 @@ public:
 		cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		cbd.Usage = D3D11_USAGE_DYNAMIC;
 		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		cbd.MiscFlags = 0u;
 		cbd.ByteWidth = sizeof(consts);
 		cbd.StructureByteStride = 0u;
 
@@ -42,6 +43,7 @@ public:
 		cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		cbd.Usage = D3D11_USAGE_DYNAMIC;
 		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		cbd.MiscFlags = 0u;
 		cbd.ByteWidth = sizeof(C);
 		cbd.StructureByteStride = 0u;
 		GetDevice(gfx)->CreateBuffer(&cbd, nullptr, &pConstBuffer);
