@@ -3,7 +3,7 @@
 #include<memory>
 #include<math.h>
 #include <iomanip>
-App::App() :wnd(800,600, "Z fuck Window")
+App::App() :wnd(800,600, "Œ‚∞À∏Á")
 {
 	std::mt19937 rng(std::random_device{}());
 	std::uniform_real_distribution<float> adist(0.0f, 3.1415f * 2.0f);
