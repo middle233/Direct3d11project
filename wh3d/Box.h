@@ -1,7 +1,7 @@
 #pragma once
-#include"DrawBase.h"
+#include"DrawAll.h"
 
-class Box:public DrawBase
+class Box:public DrawAll<Box>
 {
 public:
 	Box(Graphics& gfx, std::mt19937& rng,

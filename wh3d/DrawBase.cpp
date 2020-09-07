@@ -6,6 +6,10 @@ void DrawBase::Draw(Graphics& gfx) const
 	{
 		b->Bind(gfx);
 	}
+	for (auto& b : GetStaticBinds())
+	{
+		b->Bind(gfx);
+	}
 	gfx.DrawIndexed(pIndexBuffer->GetCount());
 }
 

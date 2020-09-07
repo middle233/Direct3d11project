@@ -5,7 +5,8 @@
 class BindBase;
 class DrawBase
 {
-
+	template<class T>
+	friend class DrawAll;
 public:
 	DrawBase() = default;
 	DrawBase(const DrawBase&) = delete;
@@ -16,7 +17,9 @@ public:
 	void AddIndexBuffer(std::unique_ptr<class IndexBuffer> ibuf);
 	virtual ~DrawBase() = default;
 private:
-	const IndexBuffer* pIndexBuffer = nullptr;
+	virtual const std::vector<std::unique_ptr<BindBase>>& GetStaticBinds() const =0;
+private:
+	const class IndexBuffer* pIndexBuffer = nullptr;
 	std::vector<std::unique_ptr<BindBase>> binds;
 };
 

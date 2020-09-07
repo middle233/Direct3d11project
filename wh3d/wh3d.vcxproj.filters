@@ -158,6 +158,9 @@
     <ClInclude Include="VertexBuffer.h">
       <Filter>头文件\Bind</Filter>
     </ClInclude>
+    <ClInclude Include="DrawAll.h">
+      <Filter>头文件\Draw</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="wh3d.rc">

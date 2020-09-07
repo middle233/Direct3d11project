@@ -175,6 +175,7 @@
     <ClInclude Include="BindBase.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="ConstBuffer.h" />
+    <ClInclude Include="DrawAll.h" />
     <ClInclude Include="DrawBase.h" />
     <ClInclude Include="DrawTestTriangle.h" />
     <ClInclude Include="Graphics.h" />
