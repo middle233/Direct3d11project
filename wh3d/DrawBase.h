@@ -13,9 +13,10 @@ public:
 	virtual DirectX::XMMATRIX GetTransformXM() const = 0;
 	void Draw(Graphics& gfx)const;
 	virtual void Updata(float dt) = 0;
+	virtual ~DrawBase() = default;
+protected:
 	void AddBind(std::unique_ptr<BindBase> bind);
 	void AddIndexBuffer(std::unique_ptr<class IndexBuffer> ibuf);
-	virtual ~DrawBase() = default;
 private:
 	virtual const std::vector<std::unique_ptr<BindBase>>& GetStaticBinds() const =0;
 private:

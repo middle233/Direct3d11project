@@ -54,9 +54,6 @@
     <ClCompile Include="MyTimer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="DrawTestTriangle.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="BindBase.cpp">
       <Filter>源文件\Bind</Filter>
     </ClCompile>
@@ -117,9 +114,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="MyTimer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawTestTriangle.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="ConstBuffer.h">

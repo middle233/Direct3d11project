@@ -8,7 +8,8 @@ public:
 	TransformCbuf(Graphics& gfx, const DrawBase& parent);
 	void Bind(Graphics& gfx) override;
 private:
-	VertexConstantBuffer<DirectX::XMMATRIX>vcbuf;
+	
+	static std::unique_ptr<VertexConstantBuffer<DirectX::XMMATRIX>> pVcbuf;
 	const DrawBase& parent;
 };
 

@@ -13,12 +13,12 @@ private:
 		return staticBinds;
 	};
 	
-public:
-	bool IsStaticInitialized() const
+protected:
+	static bool IsStaticInitialized() 
 	{
 		return !staticBinds.empty() ;
 	}
-	void AddStaticBind(std::unique_ptr<BindBase> bind)
+	static void AddStaticBind(std::unique_ptr<BindBase> bind)
 	{
 		staticBinds.push_back(std::move(bind));
 	}

@@ -2,12 +2,18 @@
 
 TransformCbuf::TransformCbuf(Graphics& gfx, const DrawBase& parent)
 	:
-	vcbuf(gfx),
+	
 	parent(parent)
-{}
+{
+	if (!pVcbuf)
+	{
+		pVcbuf = std::make_unique<VertexConstantBuffer<DirectX::XMMATRIX>>(gfx);
+	}
+}
 
 void TransformCbuf::Bind(Graphics& gfx)
 {
-	vcbuf.Updata(gfx, DirectX::XMMatrixTranspose(parent.GetTransformXM() * gfx.Getprojection()));
-	vcbuf.Bind(gfx);
+	pVcbuf->Updata(gfx, DirectX::XMMatrixTranspose(parent.GetTransformXM() * gfx.Getprojection()));
+	pVcbuf->Bind(gfx);
 }
+std::unique_ptr<VertexConstantBuffer<DirectX::XMMATRIX>> TransformCbuf::pVcbuf;
