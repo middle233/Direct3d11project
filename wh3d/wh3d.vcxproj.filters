@@ -87,6 +87,9 @@
     <ClCompile Include="VerterBuffer.cpp">
       <Filter>源文件\Bind</Filter>
     </ClCompile>
+    <ClCompile Include="Surface.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MyWin.h">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="DrawAll.h">
       <Filter>头文件\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="Surface.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
